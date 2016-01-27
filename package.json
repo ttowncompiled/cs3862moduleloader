@@ -1,0 +1,23 @@
+{
+  "name": "cs3862moduleloader",
+  "version": "0.0.1",
+  "description": "A module loader designed by the students of cs3862.",
+  "main": "...",
+  "scripts": {
+    "test": "..."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttowncompiled/cs3862moduleloader.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ttowncompiled/cs3862moduleloader/issues"
+  },
+  "homepage": "https://github.com/ttowncompiled/cs3862moduleloader#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.4.3"
+  }
+}
