@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ttowncompiled/cs3862moduleloader#readme",
   "devDependencies": {
     "chai": "^3.4.1",
-    "mocha": "^2.4.3"
+    "mocha": "^2.4.3",
+    "typescript": "^1.7.5"
   }
 }
