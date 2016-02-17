@@ -1,13 +1,12 @@
 import {ModuleCache} from './module-cache';
 
-class SystemRegister {
-  constructor(cache: ModuleCache) {}
+export class SystemRegister {
+  constructor(public cache: ModuleCache) {}
 
   register(name: string, deps: string[], program: Function): void {
     var module: any = {}; //blank object for module
-    var moduleModify: Function = function(prop: string, export: any): void {}
 
-    var exports: Function = function(name: string, member: any) => module[name]       = member;
+    var exports: Function = (name: string, member: any) => module[name] = member;
     var obj: any = program(exports);
 
     for(var i in deps) {
