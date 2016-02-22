@@ -9,10 +9,12 @@ export class SystemRegister {
     var exports: Function = (name: string, member: any) => module[name] = member;
     var obj: any = program(exports);
 
-    for(var i in deps) {
-      // Call the setter for each dep and load into module object
-    }
-    // execute(obj) 
-    // Store the module in cache
+    this.cache.get(deps).then( (modules: any[]) => {
+      for(var i = 0; i < modules.length; i++) {
+        obj.setters[i](modules[i]);
+      }
+      obj.execute();
+      this.cache.store(name, module);
+    });
   }
 }
