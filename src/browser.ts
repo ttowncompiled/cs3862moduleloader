@@ -1,14 +1,18 @@
 export class Browser {
-  constructor() {}
-  
-  fetch(url: string): void {
+  fetch(url: string): any {
     var xhr: XMLHttpRequest = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.onload = () => {
-      if (xhr.status == 200) {
-        eval(xhr.responseText);
+    return new Promise((resolve, reject) => {
+      xhr.open("GET", url);
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          eval(xhr.responseText);
+          resolve();
+        }
+        else{
+          reject{xhr.status};
+        }
       }
+      xhr.send();
     }
-    xhr.send();
   }
 }
