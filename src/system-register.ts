@@ -4,7 +4,7 @@ export class SystemRegister {
   constructor(public cache: ModuleCache) {}
 
   register(name: string, deps: string[], program: Function): void {
-    var module: any = {}; //blank object for module
+    var module: any = {};
 
     var exports: Function = (name: string, member: any) => module[name] = member;
     var obj: any = program(exports);
