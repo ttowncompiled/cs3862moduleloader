@@ -1,7 +1,8 @@
+/// <reference-path="../typings/es6-promise/es6-promise.d.ts" />
 export class Browser {
-  fetch(url: string): any {
+  fetch(url: string): Promise<any> {
     var xhr: XMLHttpRequest = new XMLHttpRequest();
-    return new Promise((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       xhr.open("GET", url);
       xhr.onload = () => {
         if (xhr.status == 200) {
@@ -9,10 +10,10 @@ export class Browser {
           resolve();
         }
         else{
-          reject{xhr.status};
+          reject(xhr.status);
         }
       }
       xhr.send();
-    }
+    });
   }
 }

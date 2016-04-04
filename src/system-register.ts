@@ -9,7 +9,7 @@ export class SystemRegister {
     var exports: Function = (name: string, member: any) => module[name] = member;
     var obj: any = program(exports);
 
-    this.cache.get(deps).then( (modules: any[]) => {
+    this.cache.get(deps).then((modules: any[]) => {
       for(var i = 0; i < modules.length; i++) {
         obj.setters[i](modules[i]);
       }
