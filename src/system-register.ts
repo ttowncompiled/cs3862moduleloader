@@ -4,9 +4,9 @@ export class SystemRegister {
   constructor(public cache: ModuleCache) {}
 
   register(name: string, deps: string[], program: Function): void {
-    var module: any = {};
+    var mod: any = {};
 
-    var exports: Function = (name: string, member: any) => module[name] = member;
+    var exports: Function = (name: string, member: any) => mod[name] = member;
     var obj: any = program(exports);
 
     this.cache.get(deps).then((modules: any[]) => {
@@ -14,7 +14,7 @@ export class SystemRegister {
         obj.setters[i](modules[i]);
       }
       obj.execute();
-      this.cache.store(name, module);
+      this.cache.store(name, mod);
     });
   }
 }
