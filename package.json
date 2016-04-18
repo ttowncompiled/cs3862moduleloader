@@ -4,7 +4,7 @@
   "description": "A module loader designed by the students of cs3862.",
   "main": "...",
   "scripts": {
-    "test": "..."
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@ interface Record {
 }
 
 export class ModuleCache {
-	cache: any = {};
+  cache: any = {};
 
   constructor(public browser: Browser) {}
 
@@ -28,9 +28,5 @@ export class ModuleCache {
 
   store(name: string, mod: any): void {
     this.cache[name].resolve(mod);
-  }
-  
-  inject(int: key) Promise<any>{
-  	
   }
 }
