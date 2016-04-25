@@ -29,4 +29,21 @@ export class ModuleCache {
   store(name: string, mod: any): void {
     this.cache[name].resolve(mod);
   }
+
+  factory( public browser: Browser){
+    var userBrowser = navigarot.userAgent
+    if (userBrowser.search("Chrome"){
+    }
+    else if (userBrowser.search("Firefox"){
+    }
+    else if(userBrowser.search("Safari"){
+    }
+    else if(userBrowser.search("Waterfox"){
+    }
+    else if (userBrowser.search("MSIE"){
+    var ie9eval = (prog: string) => eval('[' + prog + '][0]');
+    }
+    else{
+    }
+  }
 }
