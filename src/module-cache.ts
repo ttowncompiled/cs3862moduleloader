@@ -33,17 +33,40 @@ export class ModuleCache {
   factory( public browser: Browser){
     var userBrowser = navigarot.userAgent
     if (userBrowser.search("Chrome"){
+    var xhr = <something>;
+    var jsEval = <something>;
+    var browser = new Browser(xhr, jsEval);
+    var mcache = new ModuleCache(browser);
+    return new SystemRegister(mcache);
     }
     else if (userBrowser.search("Firefox"){
-    }
-    else if(userBrowser.search("Safari"){
-    }
-    else if(userBrowser.search("Waterfox"){
+    var xhr = <something>;
+    var jsEval = <something>;
+    var browser = new Browser(xhr, jsEval);
+    var mcache = new ModuleCache(browser);
+    return new SystemRegister(mcache);
     }
     else if (userBrowser.search("MSIE"){
     var ie9eval = (prog: string) => eval('[' + prog + '][0]');
+
+    
     }
     else{
     }
   }
+}
+
+class IE9XHR {
+    onload: Function;
+    xhr: XMLHttpRequest;
+    constructor() {
+        this.xhr = new XMLHttpRequest();
+    }
+    open(requestType: string, url: string): any {
+        return this.xhr.open(requestType, url)
+    }
+    send(): any {
+        this.xhr.onreadystatechange = this.onload;
+        return this.xhr.send();
+    }
 }
