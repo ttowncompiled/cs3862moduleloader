@@ -1,7 +1,13 @@
-import {ModuleCache} from './module-cache';
+import { ModuleCache } from './module-cache';
+import { SupplyCache } from './supply-cache';
 
 export class SystemRegister {
-  constructor(public cache: ModuleCache) {}
+  
+  constructor(public cache: ModuleCache, public scache: SupplyCache) {}
+  
+  inject(key: string): Promise<any> {
+    return this.scache.inject(key);
+  }
 
   register(name: string, deps: string[], program: Function): void {
     var mod: any = {};
@@ -16,5 +22,9 @@ export class SystemRegister {
       obj.execute();
       this.cache.store(name, mod);
     });
+  }
+  
+  supply(key: string, prop: any): void {
+    return this.scache.supply(key, prop);
   }
 }

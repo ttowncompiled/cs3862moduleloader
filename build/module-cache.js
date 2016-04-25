@@ -1,3 +1,4 @@
+"use strict";
 var ModuleCache = (function () {
     function ModuleCache(browser) {
         this.browser = browser;
@@ -22,5 +23,5 @@ var ModuleCache = (function () {
         this.cache[name].resolve(mod);
     };
     return ModuleCache;
-})();
+}());
 exports.ModuleCache = ModuleCache;
