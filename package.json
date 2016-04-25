@@ -4,7 +4,8 @@
   "description": "A module loader designed by the students of cs3862.",
   "main": "...",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "test": "npm run tsc && mocha build/test/*"
   },
   "repository": {
     "type": "git",

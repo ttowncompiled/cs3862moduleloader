@@ -1,21 +1,34 @@
 /// <reference-path="../typings/es6-promise/es6-promise.d.ts" />
-import {Browser} from './browser';
+import { Browser } from './browser';
 
-interface Record {
-  promise: Promise<any>;
-  resolve: Function;
+export interface Cache {
+  [key: string]: Record;
+}
+
+export interface Module {
+  [property: string]: Property;
+}
+
+export type Property = any;
+
+export interface Record {
+  promise: Promise<Module>;
+  resolve: (mod: Module) => void;
 }
 
 export class ModuleCache {
-  cache: any = {};
+  cache: Cache = {};
 
   constructor(public browser: Browser) {}
 
-  get(names: string[]): Promise<any[]> {
+  get(names: string[]): Promise<Module[]> {
+    if (names.length == 0) {
+      return Promise.resolve([]);
+    }
     return Promise.all(names.map((name: string) => {
       if (!(name in this.cache)) {
-        var record: Record = {promise: null, resolve: null};
-        var fetch: Promise<any> = new Promise<any>((resolve, reject) => {
+        var record: Record = { promise: null, resolve: null };
+        var fetch: Promise<Module> = new Promise<Module>((resolve, reject) => {
           this.browser.fetch(name);
           record.resolve = resolve;
         });
@@ -26,7 +39,7 @@ export class ModuleCache {
     }));
   }
 
-  store(name: string, mod: any): void {
+  store(name: string, mod: Module): void {
     this.cache[name].resolve(mod);
   }
 }

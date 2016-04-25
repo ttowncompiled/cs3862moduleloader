@@ -6,6 +6,9 @@ var ModuleCache = (function () {
     }
     ModuleCache.prototype.get = function (names) {
         var _this = this;
+        if (names.length == 0) {
+            return Promise.resolve([]);
+        }
         return Promise.all(names.map(function (name) {
             if (!(name in _this.cache)) {
                 var record = { promise: null, resolve: null };

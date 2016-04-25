@@ -4,13 +4,7 @@ export class SupplyCache {
 	cache: any = {};
 
 	supply(key: string, prop: any): void {
-		if (typeof prop == "promise") {
-			this.cache[key] = prop;
-		} else {
-			this.cache[key] = new Promise((resolve, reject) => {
-				resolve(prop);
-			});
-		}
+		this.cache[key] = Promise.resolve(prop);
 	}
 	
 	inject(key:string): Promise<any> {

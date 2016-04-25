@@ -31,14 +31,14 @@ class IE9XHR implements XMLHttp {
 
 function factory(): SystemRegister {
   if (navigator.appCodeName == 'Mozilla' || navigator.appCodeName == 'Chrome'){
-    var xmlFactory: XMLFactory = <any>XMLHttpRequest;
+    var xmlFactory: XMLFactory = () => <any>new XMLHttpRequest();
     var jsEval: EvalFunction = eval;
     var browser: Browser = new Browser(xmlFactory, jsEval);
     var cache: ModuleCache = new ModuleCache(browser);
     var supply: SupplyCache = new SupplyCache();
     return new SystemRegister(cache, supply);
   } else if (navigator.appCodeName == "MSIE") {
-    var xmlFactory: XMLFactory = <any>XMLHttpRequest;
+    var xmlFactory: XMLFactory = () => new IE9XHR();
     var ie9eval: EvalFunction = (js: string) => eval('[' + js + '][0]');
     var browser: Browser = new Browser(xmlFactory, jsEval);
     var cache: ModuleCache = new ModuleCache(browser);
@@ -48,4 +48,4 @@ function factory(): SystemRegister {
   return null;
 }
 
-var System: any = factory();
+var System: SystemRegister = factory();

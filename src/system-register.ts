@@ -1,5 +1,13 @@
-import { ModuleCache } from './module-cache';
+import { ModuleCache, Module } from './module-cache';
 import { SupplyCache } from './supply-cache';
+
+export type Export = (name: string, member: any) => void;
+export type Program = (exports: Export) => Register;
+export interface Register {
+  setters: Setter[];
+  execute: () => void;
+}
+export type Setter = (mod: Module) => void;
 
 export class SystemRegister {
   
@@ -9,13 +17,13 @@ export class SystemRegister {
     return this.scache.inject(key);
   }
 
-  register(name: string, deps: string[], program: Function): void {
+  register(name: string, deps: string[], program: Program): void {
     var mod: any = {};
 
-    var exports: Function = (name: string, member: any) => mod[name] = member;
-    var obj: any = program(exports);
+    var exports: Export = (name: string, member: any) => mod[name] = member;
+    var obj: Register = program(exports);
 
-    this.cache.get(deps).then((modules: any[]) => {
+    this.cache.get(deps).then((modules: Module[]) => {
       for(var i = 0; i < modules.length; i++) {
         obj.setters[i](modules[i]);
       }
